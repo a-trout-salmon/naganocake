@@ -11,6 +11,10 @@ ja:
       inclusion: "は一覧にありません"
 
   activerecord:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+
     models:
       user: "会員"
       customer: "会員"
