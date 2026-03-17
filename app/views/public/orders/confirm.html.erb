@@ -22,12 +22,28 @@
   </tbody>
 </table>
 
-<!-- 合計 -->
-<p>商品合計：<%= @total %>円</p>
-<p>送料：800円</p>
-<p><strong>請求金額：<%= @total + 800 %>円</strong></p>
+<div class="mt-4">
 
-<hr>
+  <table class="table table-bordered" style="width: 300px; margin-left: auto;">
+    <tbody>
+
+      <tr>
+        <th>送料</th>
+        <td>800</td>
+      </tr>
+
+      <tr>
+        <th>請求金額</th>
+        <td><%= @total + 800 %></td>
+      </tr>
+      <tr>
+        <th>請求金額</th>
+        <td><%= @total + 800 %></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
 
 <h4>支払い方法</h4>
 <p><%= @order.payment_method_i18n %></p>
