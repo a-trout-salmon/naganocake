@@ -1,0 +1,101 @@
+<div class="container py-5">
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-6">
+      <h2 class="fw-bold d-inline-block px-3 py-1" style="background-color: #f2f2f2;">
+        ショッピングカート
+      </h2>
+    </div>
+    <div class="col-md-6 text-end">
+      <%= button_to "カートを空にする",
+          destroy_all_cart_items_path,
+          method: :delete,
+          class: "btn btn-danger px-4 fw-bold" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered align-middle text-center">
+    <thead>
+      <tr>
+        <th class="text-start" style="width: 42%;">商品名</th>
+        <th style="width: 15%;">単価(税込)</th>
+        <th style="width: 15%;">数量</th>
+        <th style="width: 15%;">小計</th>
+        <th style="width: 13%;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% total = 0 %>
+      <% @cart_items.each do |cart_item| %>
+        <% subtotal = cart_item.subtotal %>
+        <% total += subtotal %>
+        <tr>
+          <td class="text-start">
+            <div class="d-flex align-items-center gap-3">
+              <div
+                class="border bg-white d-flex align-items-center justify-content-center flex-shrink-0"
+                style="width: 90px; height: 65px; overflow: hidden;"
+              >
+                <% if cart_item.item.image.attached? %>
+                  <%= image_tag cart_item.item.image, class: "w-100 h-100", style: "object-fit: cover;" %>
+                <% else %>
+                  <span style="font-size: 12px;">画像なし</span>
+                <% end %>
+              </div>
+              <span class="fw-bold"><%= cart_item.item.name %></span>
+            </div>
+          </td>
+
+          <td class="fw-bold">
+            <%= cart_item.item.with_tax_price.to_fs(:delimited) %>
+          </td>
+
+          <td>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
+              <div class="d-flex justify-content-center align-items-center gap-2">
+                <%= f.select :amount,
+                    options_for_select((1..10).to_a, cart_item.amount),
+                    {},
+                    class: "form-select",
+                    style: "width: 80px; min-width: 80px;" %>
+
+                <%= f.submit "変更", class: "btn btn-success fw-bold px-3" %>
+              </div>
+            <% end %>
+          </td>
+
+          <td class="fw-bold">
+            <%= subtotal.to_fs(:delimited) %>
+          </td>
+
+          <td>
+            <%= button_to "削除する",
+                cart_item_path(cart_item),
+                method: :delete,
+                class: "btn btn-danger fw-bold px-3" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="row mt-4 align-items-start">
+    <div class="col-md-4 mb-3">
+      <%= link_to "買い物を続ける", items_path, class: "btn btn-primary fw-bold px-4 py-2" %>
+    </div>
+
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <table class="table table-bordered mb-0">
+        <tr>
+          <th style="width: 50%;">合計金額</th>
+          <td class="fw-bold"><%= total.to_fs(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center mt-5">
+    <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success fw-bold px-5 py-3" %>
+  </div>
+</div>
