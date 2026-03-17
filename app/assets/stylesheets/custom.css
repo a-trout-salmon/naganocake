@@ -1,0 +1,37 @@
+
+<!--public/registrations/new.html.erb-->
+
+.form-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  background: #eee;
+  padding: 6px 16px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.form-row {
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.form-label-col {
+  font-weight: 500;
+}
+
+.mini-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-control {
+  height: 42px;
+}
+
+.submit-btn {
+  width: 200px;
+  font-size: 16px;
+}
