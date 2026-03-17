@@ -1,0 +1,30 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-lg-10 mx-auto">
+      <div class="d-flex align-items-end mb-4">
+        <h2 class="fw-bold mb-0 me-2">商品一覧</h2>
+        <p class="mb-0">（全<%= @items.count %>件）</p>
+      </div>
+
+      <div class="row g-4">
+        <% @items.each do |item| %>
+          <div class="col-6 col-md-4 col-lg-3">
+            <%= link_to item_path(item), class: "text-decoration-none text-dark d-block" do %>
+              <div class="border bg-white d-flex align-items-center justify-content-center mb-2"
+                   style="width: 100%; aspect-ratio: 4 / 3;">
+                <% if item.image.attached? %>
+                  <%= image_tag item.image, class: "img-fluid w-100 h-100", style: "object-fit: cover;" %>
+                <% else %>
+                  <span>画像なし</span>
+                <% end %>
+              </div>
+
+              <p class="mb-1 fw-bold"><%= item.name %></p>
+              <p class="mb-0 fw-bold">¥<%= item.with_tax_price.to_fs(:delimited) %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

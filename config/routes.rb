@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     root "homes#top"
     get "/about", to: "homes#about"
 
+
+    # 商品
     resources :items, only: [:index, :show]
 
     # 顧客会員登録
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
     patch "/customers/information",      to: "customers#update",      as: :customers_information
     get   "/customers/unsubscribe",      to: "customers#unsubscribe", as: :unsubscribe_customers
     patch "/customers/withdraw",         to: "customers#withdraw",    as: :withdraw_customers
+
 
     # カート
     resources :cart_items, only: [:index, :create, :update, :destroy] do
