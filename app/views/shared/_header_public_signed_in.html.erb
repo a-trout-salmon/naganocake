@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+  <div>
+    <%= link_to root_path, class: "navbar-brand fs-3 fw-bold text-dark text-decoration-none" do %>
+      NaganoCake
+    <% end %>
+  </div>
+
+  <div class="d-flex align-items-center flex-wrap gap-2">
+    <span class="me-2">ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！</span>
+
+    <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary" %>
+    <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>
+    <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary" %>
+    <%= link_to "ログアウト", destroy_customer_session_path, data: { turbo_method: :delete }, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
