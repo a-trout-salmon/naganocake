@@ -23,26 +23,18 @@
         <span style="font-size: 1rem;">(税込)</span>
       </p>
 
-      <% if authenticated_customer? %>
-        <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-          <%= f.hidden_field :item_id, value: @item.id %>
+      <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
 
-          <div class="d-flex align-items-center gap-3 flex-wrap">
-            <%= f.select :amount,
-                options_for_select((1..10).to_a, 1),
-                {},
-                class: "form-select",
-                style: "width: 180px; min-width: 180px;" %>
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+          <%= f.select :amount,
+              options_for_select((1..10).to_a, 1),
+              {},
+              class: "form-select",
+              style: "width: 180px; min-width: 180px;" %>
 
-            <%= f.submit "カートに入れる", class: "btn btn-success px-4 py-2 fw-bold" %>
-          </div>
-        <% end %>
-      <% else %>
-        <p class="mb-0">
-          カートに追加するには
-          <%= link_to "ログイン", new_customer_session_path %>
-          が必要です。
-        </p>
+          <%= f.submit "カートに入れる", class: "btn btn-success px-4 py-2 fw-bold" %>
+        </div>
       <% end %>
     </div>
   </div>
