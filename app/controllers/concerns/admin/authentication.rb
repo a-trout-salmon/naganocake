@@ -38,11 +38,11 @@ module Admin::Authentication
 
     def request_authentication
       session[:admin_return_to_after_authenticating] = request.url
-      redirect_to new_admin_session_path
+      redirect_to admin_new_session_path
     end
 
     def after_authentication_url
-      session.delete(:admin_return_to_after_authenticating) || root_url
+      session.delete(:admin_return_to_after_authenticating) || admin_root_path
     end
 
     def start_new_session_for(admin)

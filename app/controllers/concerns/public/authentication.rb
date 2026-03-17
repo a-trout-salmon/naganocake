@@ -1,4 +1,4 @@
-module Authentication
+module Public::Authentication
   extend ActiveSupport::Concern
 
   included do
