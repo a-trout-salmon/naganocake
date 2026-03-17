@@ -1,8 +1,10 @@
 <div class="container py-5">
   <div class="row align-items-start">
     <div class="col-md-5 mb-4">
-      <div class="border bg-white d-flex align-items-center justify-content-center"
-           style="width: 100%; aspect-ratio: 4 / 3; overflow: hidden;">
+      <div
+        class="border bg-white d-flex align-items-center justify-content-center"
+        style="width: 100%; aspect-ratio: 4 / 3; overflow: hidden;"
+      >
         <% if @item.image.attached? %>
           <%= image_tag @item.image, class: "img-fluid w-100 h-100", style: "object-fit: cover;" %>
         <% else %>
@@ -21,19 +23,26 @@
         <span style="font-size: 1rem;">(税込)</span>
       </p>
 
-      <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
+      <% if authenticated_customer? %>
+        <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
 
-        <div class="d-flex align-items-center gap-3">
-          <div style="width: 160px;">
+          <div class="d-flex align-items-center gap-3 flex-wrap">
             <%= f.select :amount,
-                options_for_select((1..10).to_a),
-                { prompt: "個数選択" },
-                class: "form-select" %>
-          </div>
+                options_for_select((1..10).to_a, 1),
+                {},
+                class: "form-select",
+                style: "width: 180px; min-width: 180px;" %>
 
-          <%= f.submit "カートに入れる", class: "btn btn-success px-4 py-2 fw-bold" %>
-        </div>
+            <%= f.submit "カートに入れる", class: "btn btn-success px-4 py-2 fw-bold" %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="mb-0">
+          カートに追加するには
+          <%= link_to "ログイン", new_customer_session_path %>
+          が必要です。
+        </p>
       <% end %>
     </div>
   </div>
