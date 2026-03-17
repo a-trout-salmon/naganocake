@@ -1,4 +1,6 @@
-class Public::ItemsController < ApplicationController
+class Public::ItemsController < Public::ApplicationController
+  allow_unauthenticated_access only: %i[index show]
+
   def index
     @items = Item.where(is_active: true)
   end
