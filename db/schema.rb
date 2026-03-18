@@ -128,7 +128,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_18_070508) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "customer_id"
+    t.integer "customer_id", null: false
     t.string "ip_address"
     t.string "user_agent"
     t.datetime "created_at", null: false
