@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_17_053055) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_18_053828) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -127,7 +127,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_17_053055) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.integer "customer_id"
     t.string "ip_address"
     t.string "user_agent"
     t.datetime "created_at", null: false
