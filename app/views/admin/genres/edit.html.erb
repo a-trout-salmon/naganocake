@@ -1,0 +1,25 @@
+<div class="container py-5">
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2 class="fw-bold d-inline-block px-4 py-1" style="background-color: #f2f2f2;">
+        ジャンル編集
+      </h2>
+    </div>
+  </div>
+
+  <%= form_with model: [:admin, @genre], local: true do |f| %>
+    <div class="row align-items-center">
+      <div class="col-md-2">
+        <label class="fw-bold mb-0">ジャンル名</label>
+      </div>
+
+      <div class="col-md-3">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="col-md-3">
+        <%= f.submit "変更を保存", class: "btn btn-success fw-bold px-4" %>
+      </div>
+    </div>
+  <% end %>
+</div>
