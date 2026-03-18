@@ -1,5 +1,4 @@
 class Public::OrdersController < Public::ApplicationController
-  
 
   # 注文情報入力画面
   def new
@@ -8,6 +7,7 @@ class Public::OrdersController < Public::ApplicationController
 
   # 注文確認画面
   def confirm
+
     @order = Order.new(order_params)
 
     case params[:order][:address_option]
@@ -26,18 +26,19 @@ class Public::OrdersController < Public::ApplicationController
       # 入力された値そのまま
     end
 
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items 
 
     @total = @cart_items.sum do |cart_item|
       cart_item.item.with_tax_price * cart_item.amount
     end
+    render :confirm
   end
 
   # 注文確定
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.postage = 800
+    @order.shipping_cost = 800 
 
     cart_items = current_customer.cart_items
 
@@ -45,7 +46,7 @@ class Public::OrdersController < Public::ApplicationController
       cart_item.item.with_tax_price * cart_item.amount
     end
 
-    @order.total_payment = total + @order.postage
+    @order.total_payment = total + @order.shipping_cost
 
     if @order.save
       cart_items.each do |cart_item|
@@ -87,7 +88,8 @@ class Public::OrdersController < Public::ApplicationController
       :payment_method,
       :postal_code,
       :address,
-      :name
+      :name,
     )
   end
+
 end

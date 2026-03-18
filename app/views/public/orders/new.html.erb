@@ -1,6 +1,9 @@
 <h2>注文情報入力</h2>
 
-<%= form_with model: @order, url: confirm_orders_path, method: :post do |f| %>
+<%= form_with model: @order,
+              url: confirm_orders_path,
+              method: :post,
+              data: { turbo: false } do |f| %>
 
   <!-- 支払い方法 -->
   <h4><strong>支払い方法</strong></h4>
