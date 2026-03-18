@@ -1,0 +1,73 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-9">
+
+      <!-- タイトル -->
+      <h4 class="d-inline-block bg-light px-4 py-2 fw-bold mb-5">マイページ</h4>
+
+      <!-- 登録情報 -->
+      <div class="row align-items-center mb-4">
+        <div class="col-md-2">
+          <h5 class="fw-bold mb-0">登録情報</h5>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "編集する", edit_customers_information_path,
+              class: "btn btn-success w-100 fw-bold" %>
+        </div>
+      </div>
+
+      <!-- テーブル -->
+      <table class="table table-bordered align-middle mb-5">
+        <tbody>
+          <tr>
+            <th class="bg-light" style="width: 210px;">氏名</th>
+            <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">カナ</th>
+            <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">電話番号</th>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">メールアドレス</th>
+            <td><%= @customer.email_address %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 配送先 -->
+      <div class="row align-items-center mb-4">
+        <div class="col-md-2">
+          <h5 class="fw-bold mb-0">配送先</h5>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "一覧を見る", addresses_path,
+              class: "btn btn-primary w-100 fw-bold" %>
+        </div>
+      </div>
+
+      <!-- 注文履歴 -->
+      <div class="row align-items-center">
+        <div class="col-md-2">
+          <h5 class="fw-bold mb-0">注文履歴</h5>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "一覧を見る", orders_path,
+              class: "btn btn-primary w-100 fw-bold" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

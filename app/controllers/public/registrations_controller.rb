@@ -9,7 +9,7 @@ class Public::RegistrationsController < Public::ApplicationController
       @customer = Customer.new(customer_params)
 
       if @customer.save
-        session[:customer_id] = @customer.id
+        start_new_session_for(@customer)
         redirect_to customers_my_page_path, notice: "会員登録が完了しました。"
       else
         flash.now[:alert] = "会員登録に失敗しました。入力内容をご確認ください。"
