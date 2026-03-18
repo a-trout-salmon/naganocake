@@ -20,12 +20,12 @@
 
     <tr>
       <th>支払方法</th>
-      <td><%= @order.payment_method_i18n %></td>
+      <td><%= @order.payment_method_label %></td>
     </tr>
 
     <tr>
       <th>注文ステータス</th>
-      <td><%= @order.status_i18n %></td>
+      <td><%= @order.status_label %></td>
     </tr>
   </tbody>
 </table>
@@ -36,12 +36,12 @@
   <tbody>
     <tr>
       <th>商品合計</th>
-      <td><%= @order.total_payment - @order.postage %></td>
+      <td><%= @order.total_payment - @order.shipping_cost %></td>
     </tr>
 
     <tr>
       <th>配送料</th>
-      <td><%= @order.postage %></td>
+      <td><%= @order.shipping_cost %></td>
     </tr>
 
     <tr>
