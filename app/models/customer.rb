@@ -18,4 +18,12 @@ class Customer < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, if: :password_digest_changed?
   validates :is_active, inclusion: { in: [true, false] }
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  def full_name
+    last_name + first_name
+  end
+
+  def full_name_kana
+    last_name_kana + first_name_kana
+  end
 end
