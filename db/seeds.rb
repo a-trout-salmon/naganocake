@@ -87,68 +87,92 @@ genres = ["ケーキ", "プリン", "焼き菓子", "キャンディ"].map do |g
   Genre.find_or_create_by!(name: genre_name)
 end
 
-[
+items = [
   {
     genre: genres[0],
     name: "いちごショート",
     introduction: "ふわふわスポンジと甘酸っぱいいちごを使った定番ケーキです。",
     price: 450,
-    is_active: true
+    is_active: true,
+    image_file: "strawberry_shortcake.jpg"
   },
   {
     genre: genres[0],
     name: "チョコレートケーキ",
     introduction: "濃厚なチョコレートの味わいが楽しめる人気商品です。",
     price: 500,
-    is_active: true
+    is_active: true,
+    image_file: "chocolate_cake.jpg"
   },
   {
     genre: genres[1],
     name: "なめらかプリン",
     introduction: "口どけの良い食感に仕上げた定番プリンです。",
     price: 300,
-    is_active: true
+    is_active: true,
+    image_file: "smooth_pudding.jpg"
   },
   {
     genre: genres[1],
     name: "カスタードプリン",
     introduction: "卵のコクをしっかり感じられる昔ながらのプリンです。",
     price: 320,
-    is_active: true
+    is_active: true,
+    image_file: "custard_pudding.jpg"
   },
   {
     genre: genres[2],
     name: "フィナンシェ",
     introduction: "バターの香りが豊かな焼き菓子です。",
     price: 220,
-    is_active: true
+    is_active: true,
+    image_file: "financier.jpg"
   },
   {
     genre: genres[2],
     name: "マドレーヌ",
     introduction: "しっとり食感で食べやすい定番焼き菓子です。",
     price: 200,
-    is_active: true
+    is_active: true,
+    image_file: "madeleine.jpg"
   },
   {
     genre: genres[3],
     name: "フルーツキャンディ",
     introduction: "フルーツ風味を楽しめるカラフルなキャンディです。",
     price: 150,
-    is_active: true
+    is_active: true,
+    image_file: "fruit_candy.jpg"
   },
   {
     genre: genres[3],
     name: "ミルクキャンディ",
     introduction: "やさしい甘さのミルク味キャンディです。",
     price: 140,
-    is_active: true
+    is_active: true,
+    image_file: "milk_candy.jpg"
   }
-].each do |attrs|
+]
+
+items.each do |attrs|
   item = Item.find_or_initialize_by(name: attrs[:name])
-  item.assign_attributes(attrs.except(:name))
+  item.assign_attributes(attrs.except(:name, :image_file))
   item.save!
+
+  image_path = Rails.root.join("app/assets/images/#{attrs[:image_file]}")
+
+  if File.exist?(image_path)
+    item.image.purge if item.image.attached?
+    item.image.attach(
+      io: File.open(image_path),
+      filename: attrs[:image_file]
+    )
+    puts "#{item.name} の画像を登録しました"
+  else
+    puts "画像が見つかりません: #{image_path}"
+  end
 end
+ 
 
 [
   {
