@@ -26,7 +26,7 @@ class Public::OrdersController < Public::ApplicationController
       # 入力された値そのまま
     end
 
-    @cart_items = current_customer.cart_items 
+    @cart_items = current_customer.cart_items
 
     @total = @cart_items.sum do |cart_item|
       cart_item.item.with_tax_price * cart_item.amount
@@ -38,7 +38,7 @@ class Public::OrdersController < Public::ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.shipping_cost = 800 
+    @order.shipping_cost = 800
 
     cart_items = current_customer.cart_items
 
