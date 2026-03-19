@@ -1,0 +1,40 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+
+      <h4 class="mb-4">
+        <span class="bg-light px-3">会員一覧</span>
+      </h4>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td>
+                <%= link_to customer.full_name, admin_customer_path(customer), class: "text-dark" %>
+              </td>
+              <td><%= customer.email_address %></td>
+              <td>
+                <% if customer.is_active %>
+                  <span style="color: green; font-weight: bold;">有効</span>
+                <% else %>
+                  <span style="color: gray; font-weight: bold;">退会</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
