@@ -1,13 +1,9 @@
 <!-- app/views/admin/orders/index.html.erb -->
 
-<% if @customer.present? %>
-  <h2><%= @customer.full_name %>さんの注文履歴一覧</h2>
-<% else %>
-  <h2>注文履歴一覧</h2>
-<% end %>
+<h2><span style="background-color: #f0f0f0; padding: 4px;">注文履歴一覧</span></h2>
 
 <table class="table table-bordered">
-  <thead>
+  <thead class="table-light">
     <tr>
       <th>購入日時</th>
       <th>購入者</th>
@@ -21,7 +17,7 @@
       <tr>
         <!-- 購入日時 -->
         <td>
-          <%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'), admin_order_path(order) %>
         </td>
 
         <!-- 購入者 -->
