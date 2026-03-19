@@ -1,2 +1,66 @@
-<h1>Public Topページ</h1>
-<p>ここは一般ユーザー向けトップページです。</p>
+<div class="container py-4">
+
+  <!-- メインビジュアル -->
+  <div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+      <div
+        class="top-hero position-relative rounded overflow-hidden"
+        style="background-image: url('<%= asset_path("top_cake.png") %>');"
+      >
+        <div class="top-hero-message bg-white bg-opacity-75 p-4">
+          <p class="mb-0 fw-semibold">
+            ようこそ、ながのCAKEへ!<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新着商品 -->
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <h2 class="fw-bold mb-4">新着商品</h2>
+
+      <div class="row g-4">
+        <% @items.each do |item| %>
+          <div class="col-6 col-md-3">
+            <%= link_to item_path(item), class: "text-decoration-none text-dark" do %>
+
+              <div class="card h-100 border-0">
+
+                <!-- 画像エリア（画像なし対応） -->
+                <div class="item-image-wrap d-flex align-items-center justify-content-center">
+                  <% if item.respond_to?(:image) && item.image.attached? %>
+                    <%= image_tag item.image, class: "img-fluid item-image" %>
+                  <% else %>
+                    <span class="text-muted">画像なし</span>
+                  <% end %>
+                </div>
+
+                <div class="card-body px-0 pt-2">
+                  <p class="mb-1 fw-semibold"><%= item.name %></p>
+
+                  <!-- ★税込価格 -->
+                  <p class="mb-0">
+                    ¥<%= number_with_delimiter(item.with_tax_price) %>
+                  </p>
+                </div>
+
+              </div>
+
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-end mt-3">
+        <%= link_to "全ての商品を見る >", items_path,
+              class: "fw-bold text-primary text-decoration-none" %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     delete "/sign_out", to: "sessions#destroy", as: :destroy_session
 
     # 管理者トップ
-    root "homes#top"
+    root "orders#index"
 
     # 商品
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
