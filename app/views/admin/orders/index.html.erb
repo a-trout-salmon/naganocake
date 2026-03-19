@@ -1,6 +1,10 @@
 <!-- app/views/admin/orders/index.html.erb -->
 
-<h2>注文履歴一覧</h2>
+<% if @customer.present? %>
+  <h2><%= @customer.full_name %>さんの注文履歴一覧</h2>
+<% else %>
+  <h2>注文履歴一覧</h2>
+<% end %>
 
 <table class="table table-bordered">
   <thead>
