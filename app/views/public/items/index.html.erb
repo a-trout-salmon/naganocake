@@ -1,8 +1,16 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-12 col-lg-10 mx-auto">
+    <div class="col-12 col-lg-3 mb-4 mb-lg-0">
+      <%= render "public/shared/genre_search" %>
+    </div>
+
+    <div class="col-12 col-lg-9">
       <div class="d-flex align-items-end mb-4">
-        <h2 class="fw-bold mb-0 me-2">商品一覧</h2>
+        <% if @genre.present? %>
+          <h2 class="fw-bold mb-0 me-2"><%= @genre.name %>一覧</h2>
+        <% else %>
+          <h2 class="fw-bold mb-0 me-2">商品一覧</h2>
+        <% end %>
         <p class="mb-0">（全<%= @items.count %>件）</p>
       </div>
 
