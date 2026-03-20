@@ -1,40 +1,38 @@
 <h4><span style="background-color: #f0f0f0; padding: 4px;">注文履歴詳細</span></h4>
 
-<div class="mb-3">
-  <strong>購入者</strong>
-  <%= link_to @order.customer.last_name + @order.customer.first_name,
-  admin_customer_path(@order.customer) %>
-<div>
-
-<div class="mb-3">
-  <strong>注文日</strong>
-    <%= @order.created_at.strftime('%Y/%m/%d') %>
+<div class="mb-3 d-flex">
+  <strong style="min-width: 120px;">購入者</strong>
+  <div>
+    <%= link_to @order.customer.last_name + @order.customer.first_name,
+    admin_customer_path(@order.customer) %>
   </div>
-
-<div class="mb-3">
-
-  <div class="d-flex align-items-start gap-3">
-
-    <!-- ラベル -->
-    <strong style="min-width: 80px;">配送先：</strong>
-
-    <!-- 郵便番号 + 名前 -->
-    <div>
-      <div>〒<%= @order.postal_code %></div>
-      <div class="mt-1"><%= @order.name %></div>
-    </div>
-
-    <!-- 住所 -->
-    <div>
-      <%= @order.address %>
-    </div>
-
-  </div>
-
 </div>
 
-<div class="mb-3">
-  <strong>支払方法：</strong>
+<div class="mb-3 d-flex">
+  <strong style="min-width: 120px;">注文日</strong>
+  <%= @order.created_at.strftime('%Y/%m/%d') %>
+</div>
+
+
+<div class="mb-3 d-flex align-items-start">
+
+  <!-- ラベル -->
+  <strong style="min-width: 120px;">配送先</strong>
+
+  <!-- 郵便番号 + 名前 -->
+  <div>
+    <div>〒<%= @order.postal_code %></div>
+    <div class="mt-1"><%= @order.name %></div>
+  </div>
+
+  <!-- 住所 -->
+  <div>
+    <%= @order.address %>
+  </div>
+</div>
+
+<div class="mb-3 d-flex">
+  <strong style="min-width: 120px;">支払方法</strong>
   <%= @order.payment_method_label %>
 </div>
 
