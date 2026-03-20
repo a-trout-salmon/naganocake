@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get "/about", to: "homes#about"
+    get "/search", to: "searches#index", as: :search
 
 
     # 商品
@@ -57,6 +58,9 @@ Rails.application.routes.draw do
 
     # 管理者トップ
     root "orders#index"
+
+    # 検索
+    get "/search", to: "searches#index", as: :search
 
     # 商品
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
