@@ -10,6 +10,7 @@ class Admin::SessionsController < Admin::ApplicationController
     if admin = Admin.authenticate_by(params.permit(:email_address, :password))
       start_new_session_for admin
       redirect_to admin_orders_path
+      
     else
       redirect_to admin_new_session_path, alert: "メールアドレスまたはパスワードが正しくありません"
     end
