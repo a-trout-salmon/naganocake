@@ -2,7 +2,8 @@
 
 <div class="mb-3">
   <strong>購入者</strong>
-  <%= @order.customer.last_name + @order.customer.first_name %>
+  <%= link_to @order.customer.last_name + @order.customer.first_name,
+  admin_customer_path(@order.customer) %>
 <div>
 
 <div class="mb-3">
