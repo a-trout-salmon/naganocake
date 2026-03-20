@@ -2,7 +2,12 @@ class Public::ItemsController < Public::ApplicationController
   allow_unauthenticated_access only: %i[index show]
 
   def index
-    @items = Item.where(is_active: true)
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @items = Item.where(is_active: true, genre_id: @genre.id)
+    else
+      @items = Item.where(is_active: true)
+    end
   end
 
   def show

@@ -1,0 +1,13 @@
+<div class="border bg-white" style="max-width: 240px;">
+  <div class="border-bottom text-center fw-bold py-2">
+    ジャンル検索
+  </div>
+
+  <div class="p-3">
+    <% @genres.each do |genre| %>
+      <div class="mb-3">
+        <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-dark text-decoration-none" %>
+      </div>
+    <% end %>
+  </div>
+</div>
