@@ -8,6 +8,16 @@
   <div class="d-flex align-items-center flex-wrap gap-2">
     <span class="me-2">ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！</span>
 
+    <%= form_with url: search_path, method: :get, class: "d-flex align-items-center me-2", local: true do %>
+    <div class="input-group input-group-sm" style="max-width: 260px;">
+    <%= text_field_tag :keyword, params[:keyword], class: "form-control", placeholder: "商品名で検索" %>
+    <button class="btn btn-outline-secondary" type="submit" aria-label="検索">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    </div>
+    <% end %>
+
+
     <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary" %>
     <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>
     <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary" %>

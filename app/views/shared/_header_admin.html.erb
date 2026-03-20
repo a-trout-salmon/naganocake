@@ -6,6 +6,18 @@
   </div>
 
   <div class="d-flex align-items-center flex-wrap gap-2">
+    <%= form_with url: admin_search_path, method: :get, class: "d-flex align-items-center me-2", local: true do %>
+      <div class="input-group input-group-sm" style="max-width: 340px;">
+        <%= select_tag :range,
+                       options_for_select([["商品名", "item"], ["会員名", "customer"]], params[:range] || "item"),
+                       class: "form-select" %>
+        <%= text_field_tag :keyword, params[:keyword], class: "form-control", placeholder: "キーワード検索" %>
+        <button class="btn btn-outline-secondary" type="submit" aria-label="検索">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    <% end %>
+
     <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>
     <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>
     <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-secondary" %>
