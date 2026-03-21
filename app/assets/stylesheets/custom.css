@@ -121,3 +121,17 @@
   min-width: 120px;
   font-weight: bold;
 }
+
+
+/* テーブル共通デザイン */
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.table th,
+.table td {
+  border: 1px solid #333;
+  vertical-align: middle;
+}
