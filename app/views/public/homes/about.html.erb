@@ -1,8 +1,14 @@
-<div class="container py-5">
+<div class="container py-5 about-page">
+
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h1 class="about-title">About</h1>
+    </div>
+  </div>
 
   <div class="row mb-5">
     <div class="col-lg-8 mx-auto text-center">
-      <p class="fs-5 fw-semibold mb-4">
+      <p class="about-text">
         ながのCAKEは全国発送可能なケーキ屋さんです。<br>
         お子様からお年寄りの方までお召し上がりいただけるよう、<br>
         様々なバリエーションをご用意しております。<br>
@@ -13,10 +19,8 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="about-image-crop rounded">
-        <%= image_tag "top_cake.png", class: "about-image img-fluid w-100" %>
-      </div>
+    <div class="col-lg-6 mx-auto text-center">
+      <%= image_tag "top_cake.png", class: "img-fluid about-image-frame" %>
     </div>
   </div>
 

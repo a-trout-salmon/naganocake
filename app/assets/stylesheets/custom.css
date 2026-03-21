@@ -29,26 +29,38 @@
   object-fit: cover;
 }
 
- /* public/homes/abouthtml.erb */
+/* public/homes/about.html.erb */
 
-.about-image-crop {
-  height: 420px;
-  overflow: hidden;
+.about-page {
+  min-height: 70vh;
 }
 
-.about-image {
+.about-title {
+  font-size: 72px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.about-text {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.about-image-frame {
+  max-width: 420px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  margin-top: 20px;
 }
-
 /* public/registrations/new.html.erb */
 
 .input-group-text {
   min-width: 72px;
   justify-content: center;
 }
+
+/* public/shared/_genre_search.html.erb */
 
 .genre-box {
   border: 1px solid #ccc;
