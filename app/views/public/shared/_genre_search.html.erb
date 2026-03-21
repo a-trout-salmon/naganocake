@@ -3,11 +3,13 @@
     ジャンル検索
   </div>
 
-  <div class="p-3">
-    <% @genres.each do |genre| %>
-      <div class="mb-3">
-        <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-dark text-decoration-none" %>
-      </div>
-    <% end %>
-  </div>
+   <ul class="list-unstyled mb-0">
+  <% @genres.each do |genre| %>
+    <li class="border-bottom">
+      <%= link_to genre.name,
+            items_path(genre_id: genre.id),
+            class: "d-block py-2 px-3 text-decoration-none #{'bg-light fw-bold' if params[:genre_id].to_i == genre.id}" %>
+    </li>
+  <% end %>
+   </ul>
 </div>
