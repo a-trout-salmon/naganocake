@@ -2,9 +2,9 @@
 /* public/homes/top.html.erb */
 
 .top-hero {
-  min-height: 420px;
+  min-height: 330px;
   background-size: cover;
-  background-position: top center;
+  background-position: center 5%;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
 }
 
 .item-image-wrap {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   border: 1px solid #ddd;
   background-color: #f8f9fa;
 }
