@@ -1,58 +1,73 @@
 <div class="container py-5">
-  <h2 class="fw-bold d-inline-block px-4 py-1 mb-5" style="background:#f2f2f2;">
-    商品新規登録
-  </h2>
+
+  <!-- タイトル -->
+  <div class="mb-4">
+    <h2 class="fw-bold px-4 py-2 d-inline-block" style="background:#f2f2f2;">
+      商品新規登録
+    </h2>
+  </div>
 
   <%= form_with model: [:admin, @item], local: true do |f| %>
 
-    <div class="row mb-4 align-items-center">
-      <div class="col-md-2">商品画像</div>
-      <div class="col-md-4">
-        <%= f.file_field :image %>
-      </div>
-    </div>
+    <div class="mx-auto" style="max-width: 700px;">
 
-    <div class="row mb-4 align-items-center">
-      <div class="col-md-2">商品名</div>
-      <div class="col-md-4">
-        <%= f.text_field :name, class: "form-control" %>
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-4 fw-bold">商品画像</div>
+        <div class="col-md-8">
+          <%= f.file_field :image, class: "form-control" %>
+        </div>
       </div>
-    </div>
 
-    <div class="row mb-4">
-      <div class="col-md-2">商品説明</div>
-      <div class="col-md-4">
-        <%= f.text_area :introduction, class: "form-control", rows: 5 %>
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-4 fw-bold">商品名</div>
+        <div class="col-md-8">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
       </div>
-    </div>
 
-    <div class="row mb-4 align-items-center">
-      <div class="col-md-2">ジャンル</div>
-      <div class="col-md-4">
-        <%= f.collection_select :genre_id, Genre.all, :id, :name,
+      <div class="row mb-4">
+        <div class="col-md-4 fw-bold">商品説明</div>
+        <div class="col-md-8">
+          <%= f.text_area :introduction, class: "form-control", rows: 5 %>
+        </div>
+      </div>
+
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-4 fw-bold">ジャンル</div>
+        <div class="col-md-8">
+          <%= f.collection_select :genre_id, Genre.all, :id, :name,
             { prompt: "--選択してください--" },
             class: "form-select" %>
+        </div>
       </div>
-    </div>
 
-    <div class="row mb-4 align-items-center">
-      <div class="col-md-2">税抜価格</div>
-      <div class="col-md-4 d-flex">
-        <%= f.number_field :price, class: "form-control me-2" %>
-        <span>円</span>
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-4 fw-bold">税抜価格</div>
+        <div class="col-md-8 d-flex align-items-center">
+          <%= f.number_field :price, class: "form-control me-2" %>
+          <span>円</span>
+        </div>
       </div>
-    </div>
 
-    <div class="row mb-5 align-items-center">
-      <div class="col-md-2">販売ステータス</div>
-      <div class="col-md-4">
-        <%= f.radio_button :is_active, true %> 販売中
-        <%= f.radio_button :is_active, false %> 販売停止中
+      <div class="row mb-5 align-items-center">
+        <div class="col-md-4 fw-bold">販売ステータス</div>
+        <div class="col-md-8">
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :is_active, true, class: "form-check-input" %>
+            <label class="form-check-label">販売中</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :is_active, false, class: "form-check-input" %>
+            <label class="form-check-label">販売停止中</label>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="text-center">
-      <%= f.submit "新規登録", class: "btn btn-success px-5 py-2 fw-bold" %>
+      <div class="text-center">
+        <%= f.submit "新規登録", class: "btn btn-success px-5 py-2 fw-bold" %>
+      </div>
+
     </div>
 
   <% end %>
