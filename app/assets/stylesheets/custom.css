@@ -95,3 +95,29 @@
 .genre-list li a:hover {
   background-color: #f5f5f5;
 }
+
+/* public/orders/confirm.html.erb */
+
+.order-items-table th,
+.order-items-table td {
+  vertical-align: middle;
+}
+
+.order-total-table {
+  width: 190px;
+}
+
+.order-total-table th,
+.order-total-table td {
+  width: 95px;
+  vertical-align: middle;
+}
+
+.order-info-row {
+  margin-left: 0;
+}
+
+.order-info-label {
+  min-width: 120px;
+  font-weight: bold;
+}
