@@ -1,73 +1,87 @@
 <div class="container py-5">
-  <div class="row">
-    <div class="col-md-10 mx-auto">
 
-      <h4 class="mb-4">
-        <span class="bg-light px-3"><%= @customer.full_name %>さんの会員情報編集</span>
-      </h4>
+  <!-- タイトル -->
+  <div class="mb-4">
+    <h2 class="fw-bold px-4 py-2 d-inline-block" style="background:#f2f2f2;">
+      <%= @customer.full_name %>さんの会員情報編集
+    </h2>
+  </div>
 
-      <%= form_with model: [:admin, @customer], local: true do |f| %>
-        <table class="table table-borderless align-middle">
-          <tbody>
-            <tr>
-              <th style="width: 180px;">会員ID</th>
-              <td><%= @customer.id %></td>
-            </tr>
+  <%= form_with model: [:admin, @customer], local: true do |f| %>
 
-            <tr>
-              <th>氏名</th>
-              <td>
-                <%= f.text_field :last_name %>
-                <%= f.text_field :first_name %>
-              </td>
-            </tr>
+    <div style="max-width: 700px;">
 
-            <tr>
-              <th>フリガナ</th>
-              <td>
-                <%= f.text_field :last_name_kana %>
-                <%= f.text_field :first_name_kana %>
-              </td>
-            </tr>
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">会員ID</strong>
+        <div><%= @customer.id %></div>
+      </div>
 
-            <tr>
-              <th>郵便番号</th>
-              <td><%= f.text_field :postal_code %></td>
-            </tr>
-
-            <tr>
-              <th>住所</th>
-              <td><%= f.text_field :address, size: 60 %></td>
-            </tr>
-
-            <tr>
-              <th>電話番号</th>
-              <td><%= f.text_field :telephone_number %></td>
-            </tr>
-
-            <tr>
-              <th>メールアドレス</th>
-              <td><%= f.email_field :email_address %></td>
-            </tr>
-
-            <tr>
-              <th>会員ステータス</th>
-              <td>
-                <%= f.radio_button :is_active, true %>
-                <%= f.label :is_active_true, "有効" %>
-
-                <%= f.radio_button :is_active, false %>
-                <%= f.label :is_active_false, "退会" %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="mt-4">
-          <%= f.submit "変更を保存" %>
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">氏名</strong>
+        <div class="d-flex gap-2">
+          <%= f.text_field :last_name, class: "form-control" %>
+          <%= f.text_field :first_name, class: "form-control" %>
         </div>
-      <% end %>
+      </div>
+
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">フリガナ</strong>
+        <div class="d-flex gap-2">
+          <%= f.text_field :last_name_kana, class: "form-control" %>
+          <%= f.text_field :first_name_kana, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">郵便番号</strong>
+        <div>
+          <%= f.text_field :postal_code, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">住所</strong>
+        <div class="w-100">
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">電話番号</strong>
+        <div>
+          <%= f.text_field :telephone_number, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">メールアドレス</strong>
+        <div class="w-100">
+          <%= f.email_field :email_address, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex">
+        <strong style="min-width: 150px;">会員ステータス</strong>
+        <div class="d-flex gap-3 align-items-center">
+          <div class="form-check">
+            <%= f.radio_button :is_active, true, class: "form-check-input" %>
+            <label class="form-check-label">有効</label>
+          </div>
+
+          <div class="form-check">
+            <%= f.radio_button :is_active, false, class: "form-check-input" %>
+            <label class="form-check-label">退会</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ボタン -->
+      <div class="mt-4 d-flex gap-3">
+        <%= f.submit "変更を保存", class: "btn btn-success px-4" %>
+      </div>
 
     </div>
-  </div>
+
+  <% end %>
+
 </div>

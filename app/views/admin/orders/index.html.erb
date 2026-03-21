@@ -1,41 +1,56 @@
-<!-- app/views/admin/orders/index.html.erb -->
+<div class="container py-5">
 
-<h2><span style="background-color: #f0f0f0; padding: 4px;">注文履歴一覧</span></h2>
+  <!-- タイトル -->
+  <div class="mb-4">
+    <h2 class="fw-bold px-4 py-2 d-inline-block" style="background:#f2f2f2;">
+      注文履歴一覧
+    </h2>
+  </div>
 
-<table class="table table-bordered">
-  <thead class="table-light">
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-    </tr>
-  </thead>
+  <!-- テーブル -->
+  <table class="table table-hover align-middle">
 
-  <tbody>
-    <% @orders.each do |order| %>
+    <thead class="table-light">
       <tr>
-        <!-- 購入日時 -->
-        <td>
-          <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'), admin_order_path(order) %>
-        </td>
-
-        <!-- 購入者 -->
-        <td>
-          <%= order.customer.last_name + order.customer.first_name %>
-        </td>
-
-        <!-- 注文個数 -->
-        <td>
-          <%= order.order_details.sum(:amount) %>
-        </td>
-
-        <!-- ステータス -->
-        <td>
-          <%= order.status_label %>
-        </td>
-
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+
+          <!-- 購入日時 -->
+          <td>
+            <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'),
+                admin_order_path(order),
+                class: "text-decoration-underline text-dark" %>
+          </td>
+
+          <!-- 購入者 -->
+          <td>
+            <%= order.customer.last_name + order.customer.first_name %>
+          </td>
+
+          <!-- 注文個数 -->
+          <td>
+            <%= order.order_details.sum(:amount) %>
+          </td>
+
+          <!-- ステータス -->
+          <td>
+            <span class="text-muted">
+              <%= order.status_label %>
+            </span>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+</div>

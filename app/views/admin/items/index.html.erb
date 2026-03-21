@@ -1,14 +1,20 @@
 <div class="container py-5">
-  <h2 class="fw-bold d-inline-block px-4 py-1 mb-4" style="background:#f2f2f2;">
-    商品一覧
-  </h2>
 
-  <div class="text-end mb-3">
-    <%= link_to "+", new_admin_item_path, class: "btn btn-outline-secondary rounded-circle" %>
+  <!-- ヘッダー -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold px-4 py-2 mb-0" style="background:#f2f2f2;">
+      商品一覧
+    </h2>
+
+    <%= link_to "+", new_admin_item_path,
+      class: "btn btn-outline-secondary rounded-circle fw-bold",
+      style: "width:40px;height:40px;" %>
   </div>
 
-  <table class="table align-middle">
-    <thead style="background:#f2f2f2;">
+  <!-- テーブル -->
+  <table class="table table-hover align-middle">
+
+    <thead class="table-light">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -21,13 +27,15 @@
     <tbody>
       <% @items.each do |item| %>
         <tr>
-          <td><%= item.id %></td>
+
+          <td class="text-muted"><%= item.id %></td>
 
           <td>
-            <%= link_to item.name, admin_item_path(item) %>
+            <%= link_to item.name, admin_item_path(item),
+              class: "text-decoration-underline text-dark" %>
           </td>
 
-          <td><%= item.price.to_fs(:delimited) %></td>
+          <td>¥<%= item.price.to_fs(:delimited) %></td>
 
           <td><%= item.genre.name %></td>
 
@@ -35,11 +43,14 @@
             <% if item.is_active %>
               <span class="text-success fw-bold">販売中</span>
             <% else %>
-              <span class="text-secondary">販売停止中</span>
+              <span class="text-secondary fw-bold">販売停止中</span>
             <% end %>
           </td>
+
         </tr>
       <% end %>
     </tbody>
+
   </table>
+
 </div>
