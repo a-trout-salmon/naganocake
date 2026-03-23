@@ -77,7 +77,11 @@ class Public::OrdersController < Public::ApplicationController
 
   # 注文履歴一覧
   def index
-    @orders = current_customer.orders.order(created_at: :desc)
+    @orders = current_customer.orders
+                            .includes(order_details: :item)
+                            .order(created_at: :desc)
+                            .page(params[:page])
+                            .per(10)
   end
 
   # 注文詳細
