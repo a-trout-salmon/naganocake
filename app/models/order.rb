@@ -19,6 +19,7 @@ class Order < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :name, presence: true
+  validates :payment_method, inclusion: { in: payment_methods.keys }
 
   def payment_method_label
     I18n.t("activerecord.attributes.order.payment_methods.#{payment_method}")

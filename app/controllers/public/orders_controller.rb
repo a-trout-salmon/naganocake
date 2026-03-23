@@ -9,6 +9,7 @@ class Public::OrdersController < Public::ApplicationController
   def confirm
 
     @order = Order.new(order_params)
+    @order.customer = current_customer
 
     case params[:order][:address_option]
     when "0" # 自分の住所
@@ -24,6 +25,10 @@ class Public::OrdersController < Public::ApplicationController
 
     when "2" # 新しい住所
       # 入力された値そのまま
+    end
+
+    if @order.invalid?
+      render :new and return
     end
 
     @cart_items = current_customer.cart_items
