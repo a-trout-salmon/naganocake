@@ -42,11 +42,11 @@
 
                     <!-- 画像 -->
                     <div class="item-image-wrap d-flex align-items-center justify-content-center">
-                      <% if item.image.attached? %>
-                        <%= image_tag item.image, class: "img-fluid item-image" %>
-                      <% else %>
-                        <span class="text-muted">画像なし</span>
-                      <% end %>
+                       <% if item.image.attached? %>
+                        <%= image_tag item.image, class: "item-image" %>
+                       <% else %>
+                        <%= image_tag "no_image.jpg", class: "item-image" %>
+                       <% end %>
                     </div>
 
                     <div class="card-body px-0 pt-2">
