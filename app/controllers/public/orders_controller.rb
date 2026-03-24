@@ -1,4 +1,5 @@
 class Public::OrdersController < Public::ApplicationController
+  before_action :ensure_cart_items_present, only: [:new, :confirm, :create]
 
   # 注文情報入力画面
   def new
@@ -91,6 +92,12 @@ class Public::OrdersController < Public::ApplicationController
   end
 
   private
+
+  def ensure_cart_items_present
+    return if current_customer.cart_items.exists?
+
+    redirect_to cart_items_path, alert: "カートに商品が入っていません"
+  end
 
   def order_params
     params.require(:order).permit(
