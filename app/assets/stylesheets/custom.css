@@ -47,11 +47,11 @@
   line-height: 1.6;
 }
 
-.about-image-frame {
-  max-width: 420px;
-  width: 100%;
-  height: auto;
-  margin-top: 20px;
+.about-hero {
+  min-height: 270px;
+  background-size: cover;
+  background-position: center 3%;
+  background-repeat: no-repeat;
 }
 /* public/registrations/new.html.erb */
 
