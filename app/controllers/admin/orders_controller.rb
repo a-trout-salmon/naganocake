@@ -2,8 +2,8 @@ class Admin::OrdersController < ApplicationController
   def index
     @orders = Order.includes(:customer, :order_details)
                    .order(created_at: :desc)
-                   
-                   
+
+
 
     if params[:customer_id].present?
       @customer = Customer.find(params[:customer_id])
@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
     end
 
     @orders = @orders.page(params[:page]).per(10)
-    
+
   end
 
   def show
@@ -23,6 +23,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     if @order.update(order_params)
+      @order.order_details.update_all(making_status: :waiting_for_production) if @order.status == "payment_confirmed"
       redirect_to admin_order_path(@order)
     else
       render :show
