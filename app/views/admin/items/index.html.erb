@@ -1,0 +1,61 @@
+<div class="container py-5">
+
+  <!-- ヘッダー -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold px-4 py-2 mb-0" style="background:#f2f2f2;">
+      商品一覧
+    </h2>
+
+    <%= link_to "+", new_admin_item_path,
+      class: "btn btn-outline-secondary rounded-circle fw-bold",
+      style: "width:40px;height:40px;" %>
+  </div>
+
+  <!-- テーブル -->
+  <table class="table table-hover align-middle">
+
+    <thead class="table-light">
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+
+          <td class="text-muted"><%= item.id %></td>
+
+          <td>
+            <%= link_to item.name, admin_item_path(item),
+              class: "text-decoration-underline text-dark" %>
+          </td>
+
+          <td>¥<%= item.price.to_fs(:delimited) %></td>
+
+          <td><%= item.genre.name %></td>
+
+          <td>
+            <% if item.is_active %>
+              <span class="text-success fw-bold">販売中</span>
+            <% else %>
+              <span class="text-secondary fw-bold">販売停止中</span>
+            <% end %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <!-- ページネーション -->
+  <div class="d-flex justify-content-center mt-4">
+  <%= paginate @items %>
+  </div>
+
+</div>

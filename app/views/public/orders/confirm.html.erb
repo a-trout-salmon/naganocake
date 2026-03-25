@@ -1,0 +1,96 @@
+<div class="container py-4">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+
+      <h2 class="d-inline-block px-4 py-1 mb-4 bg-light">注文情報確認</h2>
+
+      <div class="row align-items-start mb-5">
+        <!-- 商品一覧 -->
+        <div class="col-md-8">
+          <table class="table table-bordered align-middle order-items-table">
+            <thead>
+              <tr>
+                <th style="width: 45%;">商品名</th>
+                <th style="width: 18%;">単価(税込)</th>
+                <th style="width: 12%;">数量</th>
+                <th style="width: 25%;">小計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cart_items.each do |cart_item| %>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="me-3">
+                        <% if cart_item.item.image.attached? %>
+                          <%= image_tag cart_item.item.image, size: "50x50", style: "object-fit: cover;" %>
+                        <% else %>
+                          <%= image_tag "no_image.jpg", size: "50x50" %>
+                        <% end %>
+                      </div>
+                      <div><%= cart_item.item.name %></div>
+                    </div>
+                  </td>
+                  <td><%= number_with_delimiter(cart_item.item.with_tax_price) %></td>
+                  <td><%= cart_item.amount %></td>
+                  <td><%= number_with_delimiter(cart_item.item.with_tax_price * cart_item.amount) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 金額表 -->
+        <div class="col-md-4">
+          <table class="table table-bordered order-total-table ms-md-auto">
+            <tbody>
+              <tr>
+                <th>送料</th>
+                <td><%= number_with_delimiter(800) %></td>
+              </tr>
+              <tr>
+                <th>商品合計</th>
+                <td><%= number_with_delimiter(@total) %></td>
+              </tr>
+              <tr>
+                <th>請求金額</th>
+                <td><%= number_with_delimiter(@total + 800) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 支払方法 -->
+      <div class="mb-4 d-flex align-items-start order-info-row">
+        <strong class="order-info-label">支払方法</strong>
+        <div><%= @order.payment_method_label %></div>
+      </div>
+
+      <!-- お届け先 -->
+      <div class="mb-5 d-flex align-items-start order-info-row">
+        <strong class="order-info-label">お届け先</strong>
+        <div>
+          <div>
+            〒<%= @order.postal_code %>
+            <%= @order.address %>
+          </div>
+          <div><%= @order.name %></div>
+        </div>
+      </div>
+
+      <!-- hiddenでcreateへ送る -->
+      <div class="text-center">
+        <%= form_with model: @order, url: orders_path, method: :post ,local: true do |f| %>
+          <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :postal_code %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :name %>
+
+          <%= f.submit "注文を確定する", class: "btn btn-success px-4" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

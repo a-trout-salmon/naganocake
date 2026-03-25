@@ -1,0 +1,7 @@
+<% if controller.class.module_parent == Admin && !(controller_name == "sessions" && action_name == "new") %>
+  <%= render "shared/header_admin" %>
+<% elsif respond_to?(:current_customer) && current_customer.present? %>
+  <%= render "shared/header_public_signed_in" %>
+<% else %>
+  <%= render "shared/header_public_guest" %>
+<% end %>

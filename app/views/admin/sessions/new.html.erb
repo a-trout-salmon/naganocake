@@ -1,0 +1,39 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+
+      <h3 class="d-inline-block bg-light px-4 py-2 fw-bold mb-5">管理者ログイン</h3>
+
+      <%= form_with url: admin_session_path, local: true do |f| %>
+        <div class="row align-items-center mb-4">
+          <div class="col-md-3 text-md-end">
+            <label class="fw-bold mb-0">メールアドレス</label>
+          </div>
+          <div class="col-md-5">
+            <%= f.email_field :email_address,
+                  value: @email_address,
+                  class: "form-control",
+                  placeholder: "admin@example.com" %>
+          </div>
+        </div>
+
+        <div class="row align-items-center mb-5">
+          <div class="col-md-3 text-md-end">
+            <label class="fw-bold mb-0">パスワード</label>
+          </div>
+          <div class="col-md-5">
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <%= f.submit "ログイン", class: "btn btn-primary w-100 fw-bold" %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

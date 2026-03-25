@@ -1,0 +1,84 @@
+<div class="container py-5">
+  <% if @range == "customer" %>
+    <h4 class="mb-4">
+      <span class="bg-light px-3">会員検索結果</span>
+    </h4>
+
+    <% if @keyword.present? %>
+      <p class="text-muted mb-3">「<%= @keyword %>」の検索結果（全<%= @customers.count %>件）</p>
+    <% end %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            <td>
+              <%= link_to customer.full_name, admin_customer_path(customer), class: "text-dark" %>
+            </td>
+            <td><%= customer.email_address %></td>
+            <td>
+              <% if customer.is_active %>
+                <span style="color: green; font-weight: bold;">有効</span>
+              <% else %>
+                <span style="color: gray; font-weight: bold;">退会</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h2 class="fw-bold d-inline-block px-4 py-1 mb-4" style="background:#f2f2f2;">
+      商品検索結果
+    </h2>
+
+    <% if @keyword.present? %>
+      <p class="text-muted mb-3">「<%= @keyword %>」の検索結果（全<%= @items.count %>件）</p>
+    <% end %>
+
+    <table class="table align-middle">
+      <thead style="background:#f2f2f2;">
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+
+            <td>
+              <%= link_to item.name, admin_item_path(item) %>
+            </td>
+
+            <td><%= item.price.to_fs(:delimited) %></td>
+
+            <td><%= item.genre.name %></td>
+
+            <td>
+              <% if item.is_active %>
+                <span class="text-success fw-bold">販売中</span>
+              <% else %>
+                <span class="text-secondary">販売停止中</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

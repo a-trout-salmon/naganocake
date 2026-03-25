@@ -1,0 +1,53 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-10">
+
+      <h4 class="d-inline-block bg-light px-4 py-2 fw-bold mb-5">配送先編集</h4>
+
+      <% if @address.errors.any? %>
+        <div class="alert alert-danger mb-4">
+          <p class="fw-bold mb-2"><%= @address.errors.count %>件のエラーがあります。</p>
+          <ul class="mb-0">
+            <% @address.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with model: @address, url: address_path(@address), method: :patch, local: true do |f| %>
+        <div class="row align-items-center mb-3">
+          <div class="col-md-3">
+            <label class="fw-bold mb-0">郵便番号(ハイフンなし)</label>
+          </div>
+          <div class="col-md-3">
+            <%= f.text_field :postal_code, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-md-3">
+            <label class="fw-bold mb-0">住所</label>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row align-items-center mb-4">
+          <div class="col-md-3">
+            <label class="fw-bold mb-0">宛名</label>
+          </div>
+          <div class="col-md-3">
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="col-md-3 offset-md-3 d-flex justify-content-end">
+            <%= f.submit "変更内容を保存", class: "btn btn-success fw-bold px-4" %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

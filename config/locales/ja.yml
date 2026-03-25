@@ -1,0 +1,100 @@
+ja:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "を入力してください"
+      taken: "はすでに存在します"
+      too_short: "は%{count}文字以上で入力してください"
+      not_a_number: "は数値で入力してください"
+      not_an_integer: "は整数で入力してください"
+      greater_than: "は%{count}より大きい値にしてください"
+      inclusion: "は一覧にありません"
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        
+      models:
+        order:
+          attributes:
+            payment_method:
+              inclusion: "が選択されていません"
+
+    models:
+      user: "会員"
+      customer: "会員"
+      admin: "管理者"
+      address: "配送先"
+      genre: "ジャンル"
+      item: "商品"
+      cart_item: "カート内商品"
+      order: "注文"
+      order_detail: "注文詳細"
+
+    attributes:
+      user:
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "セイ"
+        first_name_kana: "メイ"
+        email: "メールアドレス"
+        email_address: "メールアドレス"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+        password: "パスワード"
+        is_active: "会員ステータス"
+      customer:
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "セイ"
+        first_name_kana: "メイ"
+        email: "メールアドレス"
+        email_address: "メールアドレス"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+        password: "パスワード"
+        is_active: "会員ステータス"
+      admin:
+        email: "メールアドレス"
+        email_address: "メールアドレス"
+        password: "パスワード"
+      address:
+        name: "宛名"
+        postal_code: "郵便番号"
+        address: "住所"
+      genre:
+        name: "ジャンル名"
+      item:
+        name: "商品名"
+        introduction: "商品説明"
+        price: "価格"
+        is_active: "販売ステータス"
+      cart_item:
+        amount: "数量"
+      order:
+        postal_code: "郵便番号"
+        address: "住所"
+        name: "宛名"
+        payment_method: "支払方法"
+        status: "注文ステータス"
+        payment_methods:
+          credit_card: "クレジットカード"
+          bank_transfer: "銀行振込"
+        statuses:
+          waiting_for_payment: "入金待ち"
+          payment_confirmed: "入金確認"
+          in_production: "製作中"
+          preparing_shipment: "発送準備中"
+          shipped: "発送済み"
+      order_detail:
+        price: "単価"
+        amount: "数量"
+        making_status: "製作ステータス"
+        making_statuses:
+          cannot_start: "製作不可"
+          waiting_for_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"

@@ -1,0 +1,58 @@
+<div class="container py-4">
+
+  <div class="mb-4">
+    <h2 class="d-inline-block px-4 py-1 bg-light fs-4 fw-bold">注文履歴一覧</h2>
+  </div>
+
+  <table class="table table-bordered align-middle order-history-table">
+    <thead>
+      <tr>
+        <th style="width: 13%;">注文日</th>
+        <th style="width: 45%;">配送先</th>
+        <th style="width: 13%;">注文商品</th>
+        <th style="width: 10%;">支払金額</th>
+        <th style="width: 10%;">ステータス</th>
+        <th style="width: 9%;">注文詳細</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td class="fw-bold">
+            <%= order.created_at.strftime('%Y/%m/%d') %>
+          </td>
+
+          <td>
+            〒<%= order.postal_code %><br>
+            <%= order.address %><br>
+            <%= order.name %>
+          </td>
+
+          <td>
+            <% order.order_details.each do |detail| %>
+              <%= detail.item.name %><br>
+            <% end %>
+          </td>
+
+          <td class="fw-bold">
+            <%= number_with_delimiter(order.total_payment) %>円
+          </td>
+
+          <td class="fw-bold">
+            <%= order.status_label %>
+          </td>
+
+          <td class="text-center">
+            <%= link_to "表示する", order_path(order), class: "btn btn-primary btn-sm px-3 fw-bold" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @orders %>
+  </div>
+
+</div>
